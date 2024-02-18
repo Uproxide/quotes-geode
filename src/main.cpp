@@ -7,7 +7,7 @@
 using namespace geode::prelude;
 
 class $modify(funFacts, MenuLayer) {
-	bool enabled = true;
+	std::string funFact;
 	
 	bool init() {
 		if (!MenuLayer::init()) {
@@ -26,32 +26,20 @@ class $modify(funFacts, MenuLayer) {
 	} 
 
 	void onFunFact(CCObject*) {
-		if (enabled) {
-			enabled = false;
-			web::AsyncWebRequest()
-	            .fetch("http://projectbdash.com/api/v1/funfacts/fact/")
-	            .json()
-	            .then([this](auto const& json) {
-	                log::info("{}", json);
-					auto& firstObject = json[0];
-					log::info("{}", firstObject["funFact"]);
-					log::info("{}", firstObject["userOfReq"]);
-					std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
-					geode::createQuickPopup(
-					    "Quote",
-					    quote,
-					    "Ok"
-					    [](bool btn1) {
-					        if (btn1) {
-					          enabled = true;
-					        }
-					    }
-					);
-
-	            })
-	            .expect([this](std::string const& error) {
-					// error :(
-	            });
-		}
+		web::AsyncWebRequest()
+            .fetch("http://projectbdash.com/api/v1/funfacts/fact/")
+            .json()
+            .then([this](auto const& json) {
+				auto& firstObject = json[0];
+				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
+				FLAlertLayer::create(
+					"Quote",
+					quote,
+					"OK"
+				)->show();
+            })
+            .expect([this](std::string const& error) {
+				// error :(
+            });
 	}
 };
