@@ -7,7 +7,7 @@
 using namespace geode::prelude;
 
 class $modify(funFacts, MenuLayer) {
-	std::string funFact;
+	bool enabled;
 	
 	bool init() {
 		if (!MenuLayer::init()) {
@@ -26,23 +26,32 @@ class $modify(funFacts, MenuLayer) {
 	} 
 
 	void onFunFact(CCObject*) {
-		web::AsyncWebRequest()
-            .fetch("http://projectbdash.com/api/v1/funfacts/fact/")
-            .json()
-            .then([this](auto const& json) {
-                log::info("{}", json);
-				auto& firstObject = json[0];
-				log::info("{}", firstObject["funFact"]);
-				log::info("{}", firstObject["userOfReq"]);
-				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
-				FLAlertLayer::create(
-					"Quote",
-					quote,
-					"OK"
-				)->show();
-            })
-            .expect([this](std::string const& error) {
-				// error :(
-            });
+		if (!enabled) {
+			enabled = false;
+			web::AsyncWebRequest()
+	            .fetch("http://projectbdash.com/api/v1/funfacts/fact/")
+	            .json()
+	            .then([this](auto const& json) {
+	                log::info("{}", json);
+					auto& firstObject = json[0];
+					log::info("{}", firstObject["funFact"]);
+					log::info("{}", firstObject["userOfReq"]);
+					std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
+					FLAlertLayer::create(
+						"Quote",
+						quote,
+						"OK"
+					)->show();
+	            })
+	            .expect([this](std::string const& error) {
+					// error :(
+	            });
+		}
 	}
+
+	void destructor() {
+        	FLAlertLayer::~FLAlertLayer();
+		enabled = true;
+        	log::info("this alert layer is destructed: {}", this);
+    	}
 };
