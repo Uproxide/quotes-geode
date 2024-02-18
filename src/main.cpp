@@ -34,7 +34,7 @@ class $modify(funFacts, MenuLayer) {
 				auto& firstObject = json[0];
 				log::info("{}", firstObject["funFact"]);
 				log::info("{}", firstObject["userOfReq"]);
-				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].as<std::string>(), firstObject["userOfReq"].as<std::string>());
+				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
 				FLAlertLayer::create(
 					"Quote",
 					quote,
