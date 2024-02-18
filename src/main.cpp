@@ -7,7 +7,7 @@
 using namespace geode::prelude;
 
 class $modify(funFacts, MenuLayer) {
-	bool enabled;
+	bool enabled = true;
 	
 	bool init() {
 		if (!MenuLayer::init()) {
@@ -26,7 +26,7 @@ class $modify(funFacts, MenuLayer) {
 	} 
 
 	void onFunFact(CCObject*) {
-		if (!enabled) {
+		if (enabled) {
 			enabled = false;
 			web::AsyncWebRequest()
 	            .fetch("http://projectbdash.com/api/v1/funfacts/fact/")
@@ -37,21 +37,21 @@ class $modify(funFacts, MenuLayer) {
 					log::info("{}", firstObject["funFact"]);
 					log::info("{}", firstObject["userOfReq"]);
 					std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
-					FLAlertLayer::create(
-						"Quote",
-						quote,
-						"OK"
-					)->show();
+					geode::createQuickPopup(
+					    "Quote",
+					    quote,
+					    "Ok"
+					    [](bool btn1) {
+					        if (btn1) {
+					          enabled = true;
+					        }
+					    }
+					);
+
 	            })
 	            .expect([this](std::string const& error) {
 					// error :(
 	            });
 		}
 	}
-
-	void destructor() {
-        	FLAlertLayer::~FLAlertLayer();
-		enabled = true;
-        	log::info("this alert layer is destructed: {}", this);
-    	}
 };
