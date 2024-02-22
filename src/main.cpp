@@ -17,13 +17,20 @@ using namespace geode::prelude;
 void refreshFunc() {
 	//auto webReq = 
 	web::AsyncWebRequest()
-		.fetch("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
-		.text()
-		.then(
-		[this](std::string const& text) {
-			Mod::get()->setSavedValue<std::string>("list", text.c_str());
-		}
-		);
+            .fetch("http://projectbdash.com/api/v1/funfacts/fact/")
+            .json()
+            .then([this](auto const& json) {
+				auto& firstObject = json[0];
+				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
+				FLAlertLayer::create(
+					"Quote",
+					quote,
+					"OK"
+				)->show();
+            })
+            .expect([this](std::string const& error) {
+				// error :(
+            });
         //auto webRes = webReq.text();
 	//Mod::get()->setSavedValue<std::string>("list", webRes.c_str());
 }
