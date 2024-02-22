@@ -31,7 +31,7 @@ SettingNode* SettingRefreshValue::createNode(float width) {
     return SettingRefreshNode::create(this, width);
 }
 
-void SettingRefreshNode:onRefreshBtn(CCObject*) {
+void SettingRefreshNode::onRefreshBtn(CCObject*) {
 	    refreshFunc();
 }
 
