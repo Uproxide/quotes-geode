@@ -38,7 +38,7 @@ void SettingRefreshNode::onRefreshBtn(CCObject*) {
 
 
 $on_mod(Loaded) {
-    Mod::get()->addCustomSetting<SettingTestValue>("refresh-btn", "none");
+    Mod::get()->addCustomSetting<SettingRefreshValue>("refresh-btn", "none");
 }
 // end of stealing from GDUtils THANKS!
 
