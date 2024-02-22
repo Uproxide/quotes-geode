@@ -111,7 +111,7 @@ class $modify(funFacts, MenuLayer) {
 
 	void onFunFact(CCObject*) {
 		auto data = Mod::get()->getSavedValue<std::string>("list");
-		if(auto object = matjson::parse(data)) {
+		if(auto json = matjson::parse(data)) {
 				auto& firstObject = json[rand() % data.size()];
 				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
 				FLAlertLayer::create(
