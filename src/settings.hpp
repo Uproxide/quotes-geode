@@ -1,9 +1,5 @@
 #pragma once
 #include <Geode/loader/SettingNode.hpp>
-#include "CreditsBetaMenu.h"
-#include "CreditsMenu.h"
-#include "../Notifications/EventsPush.h"
-#include "../includes.h"
 using namespace geode::prelude;
 
 
