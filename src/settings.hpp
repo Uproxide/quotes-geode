@@ -37,7 +37,7 @@ protected:
         auto spr = CCSprite::createWithSpriteFrameName("GJ_updateBtn_001.png");
         spr->setScale(.4F);
         auto refreshBtn = CCMenuItemSpriteExtra::create(
-            playSpr,
+            spr,
             this,
             menu_selector(SettingRefreshNode::onRefreshBtn)
         );
