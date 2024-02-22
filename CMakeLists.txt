@@ -10,7 +10,7 @@ project(Quotes VERSION 1.0.0)
 # to recursively add all source files 
 # under src/ 
 file(GLOB SOURCES
-	src/*.cpp
+	src/main.cpp
 )
 
 # Set up the mod binary
