@@ -30,50 +30,76 @@ class $modify(refresh,MenuLayer) {
 };
 
 
+// Stole from gd utils because stuff on the docs wouldent work so yea
+class SettingRefreshValue;
 
-/* class MySettingValue : public SettingValue {
+class SettingRefreshValue : public SettingValue {
+protected:
+    std::string m_placeholder;
 public:
-    bool load(matjson::Value const& json) override {}
-    bool save(matjson::Value& json) const override {}
-    MySettingNode* createNode(float width) override {
-        return MySettingNode::create();
+    SettingRefreshValue(std::string const& key, std::string const& modID, std::string const& placeholder)
+      : SettingValue(key, modID), m_placeholder(placeholder) {}
+
+    bool load(matjson::Value const& json) override {
+        return true;
+    }
+    bool save(matjson::Value& json) const override {
+        return true;
+    }
+    SettingNode* SettingRefreshValue::createNode(float width) {
+    	return SettingRefreshNode::create(this, width);
     }
 };
 
-class MySettingNode : public SettingNode {
+
+class SettingRefreshNode : public SettingNode {
 protected:
-    bool init(MySettingValue* value, float width) {
+ bool init(SettingRefreshValue* value, float width) {
         if (!SettingNode::init(value))
             return false;
-        
-        // You may change the height to anything, but make sure to call 
-        // setContentSize!
-        this->setContentSize({ width, 40.f });
-
-        // Set up the UI. Note that Geode provides a background for the 
-        // setting automatically
-	auto spr = CCSprite::createWithSpriteFrameName("GJ_updateBtn_001.png");
-
-	auto btn = CCMenuItemSpriteExtra::create(
-		spr, this, menu_selector(refresh::onRefreshPress)
-	);
-	    
+        this->setContentSize({ width, 35.f });
+        auto menu = CCMenu::create();
+        auto label = CCLabelBMFont::create("Refresh Quotes", "bigFont.fnt");
+        label->setScale(.6F);
+        label->setPositionX(-130);
+        auto spr = CCSprite::createWithSpriteFrameName("GJ_updateBtn_001.png");
+        spr->setScale(.4F);
+        auto refreshBtn = CCMenuItemSpriteExtra::create(
+            playSpr,
+            this,
+            menu_selector(SettingRefreshNode::onRefreshBtn)
+        );
+        refreshBtn->setPositionX(140);
+        menu->setPosition(width / 2, 18.f);
+        menu->addChild(label);
+        menu->addChild(refreshBtn);
+        this->addChild(menu);
         return true;
     }
 
 public:
+    void onRefreshBtn(CCObject*) {
+	    refreshFunc();
+    }
+
     void commit() override {
         this->dispatchCommitted();
     }
+
     bool hasUncommittedChanges() override {
-    }
-    bool hasNonDefaultValue() override {
-    }
-    void resetToDefault() override {
+        return false;
     }
 
-    static MySettingNode* create(MySettingValue* value, float width) {
-        auto ret = new MySettingNode();
+
+    bool hasNonDefaultValue() override {
+        return true;
+    }
+	    
+    void resetToDefault() override {
+
+    }
+    static SettingRefreshNode* create(SettingRefreshValue* value, float width) {
+        auto ret = new SettingRefreshNode;
         if (ret && ret->init(value, width)) {
             ret->autorelease();
             return ret;
@@ -81,8 +107,8 @@ public:
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
-};*/
-
+};
+// end of stealing from GDUtils THANKS!
 $on_mod(Loaded) {
     Mod::get()->addCustomSetting<MySettingValue>("refresh-btn");
 }
