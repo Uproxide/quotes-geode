@@ -37,7 +37,7 @@ public:
     bool load(matjson::Value const& json) override {}
     bool save(matjson::Value& json) const override {}
     SettingNode* createNode(float width) override {
-        return MySettingNode::create(width);
+        return MySettingNode::create();
     }
 };
 
