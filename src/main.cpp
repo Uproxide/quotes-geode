@@ -4,6 +4,9 @@
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/LevelBrowserLayer.hpp>
 #include <Geode/loader/SettingNode.hpp>
+#include <Geode/ui/GeodeUI.hpp>
+#include <Geode/loader/Loader.hpp>
+#include <Geode/loader/Mod.hpp>
 
 using namespace geode::prelude;
 
@@ -13,7 +16,7 @@ void refreshFunc() {
 	web::AsyncWebRequest()
     .fetch("http://projectbdash.com/api/v1/funfacts/fact/1.0.1.php")
     .json()
-    .then((auto const& json = this) {
+    .then((auto json) {
 			Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION));
     })
     .expect((std::string const& error) {
@@ -111,9 +114,9 @@ class $modify(funFacts, MenuLayer) {
 
 	void onFunFact(CCObject*) {
 		auto data = Mod::get()->getSavedValue<std::string>("list");
-		auto json = matjson::parse(data)) 
+		auto json = matjson::parse(data);
 				auto& firstObject = json[rand() % data.size()];
-				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"].template as<std::string>(), firstObject["userOfReq"].template as<std::string>());
+				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"], firstObject["userOfReq"]);
 				FLAlertLayer::create(
 					"Quote",
 					quote,
