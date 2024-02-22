@@ -8,7 +8,7 @@
 #include <Geode/loader/Loader.hpp>
 #include <Geode/loader/Mod.hpp>
 // Thanks so much Jouca and Firee
-#include "CustomSettings.hpp"
+#include "settings.hpp"
 
 using namespace geode::prelude;
 
