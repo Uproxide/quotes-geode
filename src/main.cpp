@@ -22,7 +22,7 @@ void refreshFunc() {
 		//matjson::Value json = this
 		Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION));
     })
-    .expect((std::string error) {});
+    .expect([this](std::string error) {});
 }
 
 
