@@ -19,9 +19,7 @@ void refreshFunc() {
     .then((auto json) {
 			Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION));
     })
-    .expect((std::string error) {
-			// error :(
-    });
+    //.expect((std::string error) {});
 }
 
 class $modify(refresh,MenuLayer) {
