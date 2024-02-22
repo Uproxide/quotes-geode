@@ -32,7 +32,7 @@ class $modify(refresh,MenuLayer) {
 
 
 
-class MySettingValue : public SettingValue {
+/* class MySettingValue : public SettingValue {
 public:
     bool load(matjson::Value const& json) override {}
     bool save(matjson::Value& json) const override {}
@@ -82,7 +82,7 @@ public:
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
-};
+};*/
 
 $on_mod(Loaded) {
     Mod::get()->addCustomSetting<MySettingValue>("refresh-btn");
