@@ -16,11 +16,11 @@ void refreshFunc() {
 	web::AsyncWebRequest()
     .fetch("http://projectbdash.com/api/v1/funfacts/fact/1.0.1.php")
     .json()
-    .then( void () {
+    .then(() {
 		matjson::Value json = this
 		Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION));
-    });
-    //.expect((std::string error) {});
+    })
+    .expect((std::string error) {});
 }
 
 class $modify(refresh,MenuLayer) {
