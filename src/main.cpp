@@ -20,8 +20,8 @@ void refreshFunc() {
 		.fetch("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
 		.text()
 		.then(
-		[this](std::string const& webRes) {
-			Mod::get()->setSavedValue<std::string>("list", webRes.c_str());
+		[this](std::string const& text) {
+			Mod::get()->setSavedValue<std::string>("list", text.c_str());
 		}
 		);
         //auto webRes = webReq.text();
