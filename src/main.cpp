@@ -40,8 +40,8 @@ public:
 
 class MySettingNode : public SettingNode {
 protected:
-    bool init(float width) {
-        if (!SettingNode::init())
+    bool init(MySettingValue* value, float width) {
+        if (!SettingNode::init(value))
             return false;
         
         // You may change the height to anything, but make sure to call 
