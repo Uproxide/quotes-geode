@@ -16,9 +16,10 @@ void refreshFunc() {
 	web::AsyncWebRequest()
     .fetch("http://projectbdash.com/api/v1/funfacts/fact/1.0.1.php")
     .json()
-    .then((matjson::Value json) {
+    .then((json2) {
+			matjson::Value json = json2
 			Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION));
-    })
+    });
     //.expect((std::string error) {});
 }
 
