@@ -17,7 +17,7 @@ using namespace geode::prelude;
 void refreshFunc() {
 	auto webReq = web::AsyncWebRequest().fetch("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php");
         auto webRes = webReq.text();
-	Mod::get()->setSavedValue<std::string>("list", webRes.c_str();
+	Mod::get()->setSavedValue<std::string>("list", webRes.c_str());
 }
 
 
