@@ -11,16 +11,17 @@ using namespace geode::prelude;
 void refreshFunc() {
 	web::AsyncWebRequest()
     .fetch("http://projectbdash.com/api/v1/funfacts/fact/1.0.1.php")
+    .json()
     .then([this](auto const& json) {
-			Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION););
+			Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION));
     })
     .expect([this](std::string const& error) {
 			// error :(
     });
 }
 
-class $modify(refresh) {
-	void onPress(CCObject*) {
+class $modify(refresh,MenuLayer) {
+	void onRefreshPress(CCObject*) {
 		refreshFunc();
 	}
 };
@@ -51,7 +52,7 @@ protected:
 	auto spr = CCSprite::createWithSpriteFrameName("GJ_updateBtn_001.png");
 
 	auto btn = CCMenuItemSpriteExtra::create(
-		spr, this, menu_selector(refresh::onPress)
+		spr, this, menu_selector(refresh::onRefreshPress)
 	);
 	    
         return true;
