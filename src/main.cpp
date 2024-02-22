@@ -15,7 +15,7 @@ using namespace geode::prelude;
 //auto data = Mod::get()->getSavedValue<json>("list");
 
 void refreshFunc() {
-	auto webReq = web::AsyncWebRequest().fetch("http://projectbdash.com/api/v1/funfacts/fact/")
+	auto webReq = web::AsyncWebRequest().fetch("http://projectbdash.com/api/v1/funfacts/fact/");
         webReq.text()
             .then([this](auto const& json) {
 		//matjson::Value json = this
