@@ -18,7 +18,7 @@ void refreshFunc() {
 	web::AsyncWebRequest()
 	   .fetch("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
 	   .text()
-	   .then((std::string webRes){
+	   .then([&](auto const& webRes){
 		   Mod::get()->setSavedValue<std::string>("list", webRes.c_str()); 
 	   });
         //auto webRes = webReq.text();
