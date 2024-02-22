@@ -3,6 +3,8 @@
 #include <matjson.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/LevelBrowserLayer.hpp>
+#include <Geode/loader/SettingNode.hpp>
+#include <Geode/loader/SettingValue.hpp>
 
 using namespace geode::prelude;
 
