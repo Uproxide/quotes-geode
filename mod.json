@@ -12,7 +12,7 @@
 	"developer": "Uproxide",
 	"description": "Gives Quotes!",
 	"settings": {
-        	"refreshBtn": {
+        	"refresh-btn": {
            		"type": "custom"
         	}
     	}
