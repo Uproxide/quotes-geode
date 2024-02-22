@@ -46,7 +46,7 @@ public:
     bool save(matjson::Value& json) const override {
         return true;
     }
-    SettingNode* SettingRefreshValue::createNode(float width) {
+    SettingNode* createNode(float width) {
     	return SettingRefreshNode::create(this, width);
     }
 };
