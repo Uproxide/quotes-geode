@@ -19,7 +19,7 @@ void refreshFunc() {
     .then((auto json) {
 			Mod::get()->setSavedValue<std::string>("list", json.dump(matjson::NO_INDENTATION));
     })
-    .expect((std::string const& error) {
+    .expect((std::string error) {
 			// error :(
     });
 }
@@ -36,7 +36,7 @@ class MySettingValue : public SettingValue {
 public:
     bool load(matjson::Value const& json) override {}
     bool save(matjson::Value& json) const override {}
-    SettingNode* createNode(float width) override {
+    MySettingNode* createNode(float width) override {
         return MySettingNode::create();
     }
 };
