@@ -16,6 +16,8 @@ using namespace geode::prelude;
 
 //auto data = Mod::get()->getSavedValue<json>("list");
 
+auto launched = false;
+
 void refreshFunc() {
 	web::AsyncWebRequest()
 	   .fetch("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
@@ -60,8 +62,8 @@ class $modify(funFacts, MenuLayer) {
 		);
 
 
-		if (!Mod::get()->setSavedValue("notFirstLaunch", true)) {
-    			refreshFunc();
+		if (!launched) {
+    			refreshFunc();launched = true;
 		} else log::debug("Quote Array: {}", Mod::get()->getSavedValue<std::string>("list"));
 		
 		menu->addChild(btn);
