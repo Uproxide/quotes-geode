@@ -71,7 +71,7 @@ class $modify(funFacts, MenuLayer) {
 		auto data = Mod::get()->getSavedValue<std::string>("list");
 		auto json = matjson::parse(data);
 		auto resAsVector = json.as<std::vector<std::string>>();
-				auto& firstObject = json[rand() % resAsVector.size()];
+				auto& firstObject = json[rand() % json.size()];
 				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"], firstObject["userOfReq"]);
 				FLAlertLayer::create(
 					"Quote",
