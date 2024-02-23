@@ -82,7 +82,7 @@ class $modify(funFacts, MenuLayer) {
 				if (testy[i]["questionableQuote"] == 0){testystring+=fmt::format("\"{}\", ",testy[i].dump());testycount++;}
 			}
 			testystring = testystring.substr(0,-2);
-			testystring = fmt::format("{} ]}",testystring);
+			testystring = fmt::format("{} ]}}",testystring);
 			json = matjson::parse(testystring);
 			jsonsize = testycount;
 		}
