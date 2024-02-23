@@ -72,7 +72,7 @@ class $modify(funFacts, MenuLayer) {
 		auto json2 = matjson::parse(fmt::format("{{\"thereeldata\":{} }}", data));
 		auto json = json2["thereeldata"];
 		//auto resAsVector = json.as<std::array>();
-				auto& firstObject = json[rand() % json.size()];
+				auto& firstObject = json[rand() % json.as_array().size()];
 				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"], firstObject["userOfReq"]);
 				FLAlertLayer::create(
 					"Quote",
