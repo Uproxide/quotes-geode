@@ -12,5 +12,4 @@ This can be funny, odd, or down right terrible. But its funny at times!
 Uproxide
 Luna
 Firee and Jouca (GDUtils Mod) for Test Notification Button code
-Coop for modifing the test notification button as a refresh quotes button
 You, The User

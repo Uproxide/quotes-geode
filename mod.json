@@ -14,6 +14,13 @@
 	"settings": {
         	"refresh-btn": {
            		"type": "custom"
-        	}
+        	},
+			"questionable": {
+				"name": "Questionable Quotes",
+				"description": "Shows Quotes that are questionable",
+				"type": "bool",
+				"default": false
+			}
+	
     	}
 }

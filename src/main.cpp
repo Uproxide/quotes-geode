@@ -69,11 +69,24 @@ class $modify(funFacts, MenuLayer) {
 
 	void onFunFact(CCObject*) {
 		auto data = Mod::get()->getSavedValue<std::string>("list");
-		log::debug("Quote Array: {}", data);
+		//log::debug("Quote Array: {}", data);
 		auto json2 = matjson::parse(fmt::format("{{\"thereeldata\":{} }}", data));
 		auto json = json2["thereeldata"];
-		//auto resAsVector = json.as<std::array>();
-				auto& firstObject = json[rand() % json.as_array().size()];
+		auto jsonsize = json.as_array().size();
+		if(Mod::get()->getSettingValue<std::string>("questionable") != true){
+			auto testy = json2["thereeldata"];
+			auto testyasarr = testy.as_array();
+			auto testystring = "{\"thereeldata\": [";
+			auto testycount = 0
+			for (int i = 0; i < testyasarr.size();i++) {
+				if (testy[i]["questionableQuote"] == 0){testystring+=fmt::format("\"{}\", ",testy[i].dump());testycount++;}
+			}
+			testystring = testystring.substr(0,-2);
+			testystring+= "]}";
+			json = matjson::parse(testystring);
+			jsonsize = testycount;
+		}
+				auto& firstObject = json[rand() % jsonsize];
 				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"], firstObject["userOfReq"]);
 				FLAlertLayer::create(
 					"Quote",
