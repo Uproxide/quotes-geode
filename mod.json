@@ -6,9 +6,24 @@
         	"android": "2.205",
         	"win": "2.204"
     	},
-	"version": "v1.0.0",
+	"version": "v1.1.0",
 	"id": "uproxide.quotes",
 	"name": "Quotes",
-	"developer": "Uproxide",
-	"description": "Gives Quotes!"
+	"developers": [
+		"Uproxide",
+		"Riley"
+	],
+	"description": "Gives Quotes!",
+	"settings": {
+        	"refresh-btn": {
+           		"type": "custom"
+        	},
+			"questionable": {
+				"name": "Questionable Quotes",
+				"description": "Shows Quotes that are questionable",
+				"type": "bool",
+				"default": false
+			}
+	
+    	}
 }
