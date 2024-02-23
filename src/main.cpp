@@ -79,7 +79,7 @@ class $modify(funFacts, MenuLayer) {
 			auto testystring = "{\"thereeldata\": [";
 			auto testycount = 0;
 			for (int i = 0; i < testyasarr.size();i++) {
-				if (testy[i]["questionableQuote"] == 0){testystring+=fmt::format("\"{}\", ",testy[i].dump());testycount++;}
+				if (testy[i]["questionableQuote"] == 0){testystring=fmt::format("{1}\"{0}\", ",testy[i].dump(),testystring);testycount++;}
 			}
 			testystring = testystring.substr(0,-2);
 			testystring = fmt::format("{} ]}}",testystring);
