@@ -9,6 +9,8 @@
 #include <Geode/loader/Mod.hpp>
 // Thanks so much Jouca and Firee
 #include "settings.hpp"
+#include <algorithm>
+#include <string>
 
 using namespace geode::prelude;
 
@@ -73,25 +75,26 @@ class $modify(funFacts, MenuLayer) {
 		auto json2 = matjson::parse(fmt::format("{{\"thereeldata\":{} }}", data));
 		auto json = json2["thereeldata"];
 		auto jsonsize = json.as_array().size();
-		if(Mod::get()->getSettingValue<bool>("questionable") != true){
+		auto& firstObject = json[rand() % jsonsize];
+		if(Mod::get()->getSettingValue<bool>("questionable") == false){
 			auto testy = json2["thereeldata"];
 			auto testyasarr = testy.as_array();
 			std::string testystring("{\"thereeldata\": [");
 			auto testycount = 0;
 			for (int i = 0; i < testyasarr.size();i++) {
-				if (testy[i]["questionableQuote"] == 0){testystring=fmt::format("{1}\"{0}\", ",testy[i].dump(),testystring);testycount++;}
+				if (testy[i]["questionableQuote"] == 0){testystring=fmt::format("{1}{0},",i,testystring);testycount++;}
 			}
-			testystring = testystring.substr(0,-2);
-			testystring = fmt::format("{} ]}}",testystring);
-			json = matjson::parse(testystring);
-			jsonsize = testycount;
+			testystring = testystring.substr(0,testystring.size()-1);
+			testystring = fmt::format("{}]}}",testystring);
+			log::debug("The testytesty: {}",testystring);
+			auto eeee = matjson::parse(testystring);
+			firstObject = json[eeee["thereeldata"][rand() % testycount].as_int()];
 		}
-				auto& firstObject = json[rand() % jsonsize];
-				std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"], firstObject["userOfReq"]);
-				FLAlertLayer::create(
-					"Quote",
-					quote,
-					"OK"
-				)->show();
+		std::string quote = fmt::format("{}\nBy {}", firstObject["funFact"], firstObject["userOfReq"]);
+		FLAlertLayer::create(
+			"Quote",
+			quote,
+			"OK"
+		)->show();
 	}
 };

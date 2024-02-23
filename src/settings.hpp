@@ -33,15 +33,15 @@ protected:
         auto menu = CCMenu::create();
         auto label = CCLabelBMFont::create("Refresh Quotes", "bigFont.fnt");
         label->setScale(.6F);
-        label->setPositionX(-130);
+        label->setPositionX(-75);
         auto spr = CCSprite::createWithSpriteFrameName("GJ_updateBtn_001.png");
-        spr->setScale(.4F);
+        spr->setScale(.525F);
         auto refreshBtn = CCMenuItemSpriteExtra::create(
             spr,
             this,
             menu_selector(SettingRefreshNode::onRefreshBtn)
         );
-        refreshBtn->setPositionX(140);
+        refreshBtn->setPositionX(142);
         menu->setPosition(width / 2, 18.f);
         menu->addChild(label);
         menu->addChild(refreshBtn);
