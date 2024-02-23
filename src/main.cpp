@@ -73,16 +73,16 @@ class $modify(funFacts, MenuLayer) {
 		auto json2 = matjson::parse(fmt::format("{{\"thereeldata\":{} }}", data));
 		auto json = json2["thereeldata"];
 		auto jsonsize = json.as_array().size();
-		if(Mod::get()->getSettingValue<std::string>("questionable") != true){
+		if(Mod::get()->getSettingValue<bool>("questionable") != true){
 			auto testy = json2["thereeldata"];
 			auto testyasarr = testy.as_array();
 			auto testystring = "{\"thereeldata\": [";
-			auto testycount = 0
+			auto testycount = 0;
 			for (int i = 0; i < testyasarr.size();i++) {
 				if (testy[i]["questionableQuote"] == 0){testystring+=fmt::format("\"{}\", ",testy[i].dump());testycount++;}
 			}
 			testystring = testystring.substr(0,-2);
-			testystring+= "]}";
+			testystring = fmt::format("{} ]}",testystring);
 			json = matjson::parse(testystring);
 			jsonsize = testycount;
 		}
