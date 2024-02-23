@@ -60,7 +60,7 @@ class $modify(funFacts, MenuLayer) {
 
 		if (!Mod::get()->setSavedValue("notFirstLaunch", true)) {
     			refreshFunc();
-		} else log::debug("Quote Array: {}", Mod::get()->getSavedValue<std::string>("list"););
+		} else log::debug("Quote Array: {}", Mod::get()->getSavedValue<std::string>("list"));
 		
 		menu->addChild(btn);
 		menu->updateLayout();
