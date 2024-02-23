@@ -76,7 +76,7 @@ class $modify(funFacts, MenuLayer) {
 		if(Mod::get()->getSettingValue<bool>("questionable") != true){
 			auto testy = json2["thereeldata"];
 			auto testyasarr = testy.as_array();
-			auto testystring = "{\"thereeldata\": [";
+			std::string testystring("{\"thereeldata\": [");
 			auto testycount = 0;
 			for (int i = 0; i < testyasarr.size();i++) {
 				if (testy[i]["questionableQuote"] == 0){testystring=fmt::format("{1}\"{0}\", ",testy[i].dump(),testystring);testycount++;}
