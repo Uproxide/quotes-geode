@@ -69,7 +69,7 @@ class $modify(funFacts, MenuLayer) {
 
 	void onFunFact(CCObject*) {
 		auto data = Mod::get()->getSavedValue<std::string>("list");
-		auto json2 = matjson::parse(fmt::format("\{\"thereeldata\":{}\}", data));
+		auto json2 = matjson::parse(fmt::format("{\"thereeldata\":{}}", data));
 		auto json2 = json2["thereeldata"]
 		auto resAsVector = json.as<std::array>();
 				auto& firstObject = json[rand() % json.size()];
