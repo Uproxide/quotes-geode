@@ -9,11 +9,7 @@
 	"version": "v1.1.0",
 	"id": "uproxide.quotes",
 	"name": "Quotes",
-	"developers": [
-		"Uproxide",
-		"Riley",
-		"Coopeeo"
-	],
+	"developer": "Uproxide"
 	"description": "Gives Quotes!",
 	"settings": {
         	"refresh-btn": {
