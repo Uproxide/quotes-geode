@@ -20,7 +20,7 @@ auto launched = false;
 
 void refreshFunc() {
 	web::WebRequest::get("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
-	   .text()
+	   .string()
 	   .then([&](auto const& webRes){
 		   Mod::get()->setSavedValue<std::string>("list", webRes.c_str()); 
 	   });
