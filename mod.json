@@ -9,7 +9,7 @@
 	"version": "v1.1.0",
 	"id": "uproxide.quotes",
 	"name": "Quotes",
-	"developer": "Uproxide"
+	"developer": "Uproxide",
 	"description": "Gives Quotes!",
 	"settings": {
         	"refresh-btn": {

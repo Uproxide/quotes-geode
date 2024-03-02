@@ -1,5 +1,5 @@
 #include <Geode/Geode.hpp>
-#include <Geode/utils/web.hpp>
+#include <Geode/utils/web2.hpp>
 #include <matjson.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/LevelBrowserLayer.hpp>
@@ -19,8 +19,7 @@ using namespace geode::prelude;
 auto launched = false;
 
 void refreshFunc() {
-	web::AsyncWebRequest()
-	   .fetch("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
+	web::WebRequest::get("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
 	   .text()
 	   .then([&](auto const& webRes){
 		   Mod::get()->setSavedValue<std::string>("list", webRes.c_str()); 
