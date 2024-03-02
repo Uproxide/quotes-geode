@@ -37,7 +37,7 @@ jobs:
         with:
           combine: true
           target: ${{ matrix.config.target }}
-          sdk: nightly
+          sdk: new-index-but-better
 
   package:
     name: Package builds
