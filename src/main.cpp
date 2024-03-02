@@ -19,7 +19,7 @@ using namespace geode::prelude;
 auto launched = false;
 
 void refreshFunc() {
-	web::WebRequest
+	web::WebRequest()
 	   .get("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
 	   .string()
 	   .then([&](auto const& webRes){
