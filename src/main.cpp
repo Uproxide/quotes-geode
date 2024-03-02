@@ -22,7 +22,7 @@ void refreshFunc() {
 	web::WebRequest()
 	   .get("http://projectbdash.com/api/v1/funfacts/fact/v1.0.1.php")
 	   .then([](auto webRes){
-		   Mod::get()->setSavedValue<std::string>("list", static_cast<std::string*>(webRes.string()).c_str()); 
+		   Mod::get()->setSavedValue<std::string>("list", webRes.string().unwrap().c_str()); 
 	   });
         //auto webRes = webReq.text();
 	//Mod::get()->setSavedValue<std::string>("list", webRes.c_str());
