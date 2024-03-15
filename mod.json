@@ -8,11 +8,7 @@
 	"version": "v1.2.0",
 	"id": "uproxide.quotes",
 	"name": "Quotes",
-	"developers": [
-		"Uproxide",
-		"Riley",
-		"Cooper"
-	],
+	"developer": "Uproxide",
 	"description": "Gives Quotes!",
 	"settings": {
         	"refresh-btn": {
